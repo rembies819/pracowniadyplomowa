@@ -12,10 +12,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
     private int count;
-    IEnumerator Sleep()
-    {
-        yield return new WaitForSecondsRealtime(5);
-    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -43,7 +40,11 @@ public class PlayerController : MonoBehaviour
             SetCountText();
         }
     }
-
+    IEnumerator Sleep()
+    {
+        yield return new WaitForSecondsRealtime(5);
+        SceneManager.LoadScene(0);
+    }
     void SetCountText()
     {
         countText.text = "Score: " + count.ToString();
@@ -51,7 +52,7 @@ public class PlayerController : MonoBehaviour
         {
             winText.text = "You Win!";
             StartCoroutine(Sleep());
-            SceneManager.LoadScene(0);
         }
     }
+
 }
